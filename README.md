@@ -18,18 +18,18 @@ Amazon SimpleDB is a web service for running queries on structured data in real 
 4. After creating user you will see credentials
 
 #### region possible values
-```
-| Region | Region name
-|--------|------------
-| us-east-1 | US East (N. Virginia)
-| us-west-1 | US West (N. California)
-| us-west-2 | US West (Oregon)
+
+| Region         | Region name
+|----------------|------------
+| us-east-1      | US East (N. Virginia)
+| us-west-1      | US West (N. California)
+| us-west-2      | US West (Oregon)
 | ap-southeast-1 | Asia Pacific (Singapore)
 | ap-southeast-2 | Asia Pacific (Sydney)
 | ap-northeast-1 | Asia Pacific (Tokyo)
-| eu-west-1 | EU (Ireland)
-| sa-east-1 | South America (São Paulo)
-```
+| eu-west-1      | EU (Ireland)
+| sa-east-1      | South America (São Paulo)
+
 
 
 ## AmazonSimpleDB.listDomains
