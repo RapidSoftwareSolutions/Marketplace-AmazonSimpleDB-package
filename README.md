@@ -252,6 +252,6 @@ The Select operation returns a set of Attributes for ItemNames that match the se
 | apiSecret       | credentials| Required: API secret obtained from Amazon.
 | region          | String     | Required: The region for endpoint. See README for all possible values.
 | selectExpression| String     | Required: The expression used to query the domain. For example: select Color from `MyDomain` where Color like '%Blue%'.
-| consistentRead  | String     | Optional: true || false. When set to true, ensures that the most recent data is returned.
+| consistentRead  | String     | Optional: true or false. When set to true, ensures that the most recent data is returned.
 | nextToken       | String     | Optional: String that tells Amazon SimpleDB where to start the next list of ItemNames.
 
