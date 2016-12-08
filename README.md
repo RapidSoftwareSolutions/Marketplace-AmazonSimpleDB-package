@@ -1,5 +1,5 @@
 # AmazonSimpleDB Package
-Amazon SimpleDB is a web service for running queries on structured data in real time. This service works in close conjunction with Amazon Simple Storage Service (Amazon S3) and Amazon Elastic Compute Cloud (Amazon EC2), collectively providing the ability to store, process and query data sets in the cloud. These services are designed to make web-scale computing easier and more cost-effective for developers.
+Store & query data items via AWS web services requests.
 * Domain: amazon.com
 * Credentials: apiKey, apiSecret
 
