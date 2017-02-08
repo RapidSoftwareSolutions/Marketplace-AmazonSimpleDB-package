@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/AmazonSimpleDB/functions?utm_source=RapidAPIGitHub_AmazonSimpleDBFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # AmazonSimpleDB Package
 Store & query data items via AWS web services requests.
 * Domain: amazon.com
