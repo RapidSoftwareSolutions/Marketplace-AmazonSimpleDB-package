@@ -1,413 +1,553 @@
 {
-    "package": "AmazonSimpleDB",
-    "tagline": "Amazon SimpleDB API",
-    "description": "Store & query data items via AWS web services requests.",
-    "image": "http:\/\/logo.clearbit.com\/amazon.com",
-    "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-AmazonSimpleDB-package",
-    "keywords": ["API", "AWS", "Amazon", "Data", "Database", "Relational", "Storage"],
-    "accounts": {
-        "domain": "amazon.com",
-        "credentials": ["apiKey", "apiSecret"]
+  "package": "AmazonSimpleDB",
+  "tagline": "Amazon SimpleDB API",
+  "description": "Store & query data items via AWS web services requests.",
+  "image": "http:\/\/logo.clearbit.com\/amazon.com",
+  "repo": "https:\/\/github.com\/RapidSoftwareSolutions\/Marketplace-AmazonSimpleDB-package",
+  "keywords": [
+    "API",
+    "AWS",
+    "Amazon",
+    "Data",
+    "Database",
+    "Relational",
+    "Storage"
+  ],
+  "accounts": {
+    "domain": "amazon.com",
+    "credentials": [
+      "apiKey",
+      "apiSecret"
+    ]
+  },
+  "blocks": [
+    {
+      "name": "listDomains",
+      "description": "This endpoint returns domain names up to the limit set by MaxNumberOfDomains. A NextToken is returned if there are more than MaxNumberOfDomains domains.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "maxNumberOfDomains",
+          "type": "String",
+          "info": "The maximum number of domain names you want returned. The range is 1 to 100. The default setting is 100.",
+          "required": false
+        },
+        {
+          "name": "nextToken",
+          "type": "String",
+          "info": "String that tells Amazon SimpleDB where to start the next list of domain names.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
     },
-    "blocks": [{
-            "name": "listDomains",
-            "description": "This endpoint returns domain names up to the limit set by MaxNumberOfDomains. A NextToken is returned if there are more than MaxNumberOfDomains domains.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "maxNumberOfDomains",
-                    "type": "String",
-                    "info": "The maximum number of domain names you want returned. The range is 1 to 100. The default setting is 100.",
-                    "required": false
-                }, {
-                    "name": "nextToken",
-                    "type": "String",
-                    "info": "String that tells Amazon SimpleDB where to start the next list of domain names.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "createDomain",
-            "description": "This endpoint allows to creates a new domain. The domain name must be unique among the domains associated with the apiKey provided in the request. The CreateDomain operation might take 10 or more seconds to complete.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain to create. The name can range between 3 and 255 characters and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "deleteDomain",
-            "description": "This endpoint allows to deletes a domain. Any items (and their attributes) in the domain are deleted as well. The DeleteDomain operation might take 10 or more seconds to complete.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain to delete.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "getAttributes",
-            "description": "Returns all of the attributes associated with the item. Optionally, the attributes returned can be limited to one or more specified attribute name parameters.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "itemName",
-                    "type": "String",
-                    "info": "The name of the item.",
-                    "required": true
-                }, {
-                    "name": "attributeName",
-                    "type": "String",
-                    "info": "The name of the attribute.",
-                    "required": false
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain in which to perform the operation.",
-                    "required": true
-                }, {
-                    "name": "consistentRead",
-                    "type": "String",
-                    "info": "When set to true, ensures that the most recent data is returned. Default: false.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "putAttributes",
-            "description": "This endpoint allows to creates or replaces attributes in an item.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "itemName",
-                    "type": "String",
-                    "info": "The name of the item.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain in which to perform the operation.",
-                    "required": true
-                }, {
-                    "name": "attributes",
-                    "type": "JSON",
-                    "info": "Array of objects. Attributes are uniquely identified in an item by their name\/value combination. Attribute.X.Name and Attribute.X.Value are reuired. See README for more details.",
-                    "required": true
-                }, {
-                    "name": "expectedName",
-                    "type": "String",
-                    "info": "Name of the attribute to check. Must be used with the expected value or expected exists parameter.",
-                    "required": false
-                }, {
-                    "name": "expectedValue",
-                    "type": "String",
-                    "info": "Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.",
-                    "required": false
-                }, {
-                    "name": "expectedExists",
-                    "type": "String",
-                    "info": "Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "deleteAttributes",
-            "description": "This endpoint allows to deletes one or more attributes associated with the item. If all attributes of an item are deleted, the item is deleted.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "itemName",
-                    "type": "String",
-                    "info": "The name of the item.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain in which to perform the operation.",
-                    "required": true
-                }, {
-                    "name": "attributes",
-                    "type": "JSON",
-                    "info": "Array of objects. Attributes are uniquely identified in an item by their name\/value combination. If you specify DeleteAttributes without attribute names or values, all the attributes for the item are deleted. See README for more details.",
-                    "required": true
-                }, {
-                    "name": "expectedName",
-                    "type": "String",
-                    "info": "Name of the attribute to check. Must be used with the expected value or expected exists parameter.",
-                    "required": false
-                }, {
-                    "name": "expectedValue",
-                    "type": "String",
-                    "info": "Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.",
-                    "required": false
-                }, {
-                    "name": "expectedExists",
-                    "type": "String",
-                    "info": "Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "batchPutAttributes",
-            "description": "With the BatchPutAttributes operation, you can perform multiple PutAttribute operations in a single call. This helps you yield savings in round trips and latencies, and enables Amazon SimpleDB to optimize requests, which generally yields better throughput.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain in which to perform the operation.",
-                    "required": true
-                }, {
-                    "name": "items",
-                    "type": "JSON",
-                    "info": "Array of objects. Items of attributes are uniquely identified in an item by their name\/value combination. See README for more details.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "batchDeleteAttributes",
-            "description": "Performs multiple DeleteAttributes operations in a single call, which reduces round trips and latencies. This enables Amazon SimpleDB to optimize requests, which generally yields better throughput.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain in which to perform the operation.",
-                    "required": true
-                }, {
-                    "name": "items",
-                    "type": "JSON",
-                    "info": "Array of objects. Items to be deleted. See README for more details.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "domainMetadata",
-            "description": "Returns information about the domain, including when the domain was created, the number of items and attributes, and the size of attribute names and values.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "domainName",
-                    "type": "String",
-                    "info": "The name of the domain for which to display metadata.",
-                    "required": true
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }, {
-            "name": "makeSelectExpression",
-            "description": "The Select operation returns a set of Attributes for ItemNames that match the select expression. Select is similar to the standard SQL SELECT statement.",
-            "args": [{
-                    "name": "apiKey",
-                    "type": "credentials",
-                    "info": "API key obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "apiSecret",
-                    "type": "credentials",
-                    "info": "API secret obtained from Amazon.",
-                    "required": true
-                }, {
-                    "name": "region",
-                    "type": "String",
-                    "info": "The region for endpoint. See README for all possible values.",
-                    "required": true
-                }, {
-                    "name": "selectExpression",
-                    "type": "String",
-                    "info": "The expression used to query the domain. For example: select Color from `MyDomain` where Color like '%Blue%'.",
-                    "required": true
-                }, {
-                    "name": "consistentRead",
-                    "type": "String",
-                    "info": "true or false. When set to true, ensures that the most recent data is returned.",
-                    "required": false
-                }, {
-                    "name": "nextToken",
-                    "type": "String",
-                    "info": "String that tells Amazon SimpleDB where to start the next list of ItemNames.",
-                    "required": false
-                }],
-            "callbacks": [{
-                    "name": "error",
-                    "info": "Error"
-                }, {
-                    "name": "success",
-                    "info": "Success"
-                }]
-        }]
+    {
+      "name": "createDomain",
+      "description": "This endpoint allows to creates a new domain. The domain name must be unique among the domains associated with the apiKey provided in the request. The CreateDomain operation might take 10 or more seconds to complete.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain to create. The name can range between 3 and 255 characters and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteDomain",
+      "description": "This endpoint allows to deletes a domain. Any items (and their attributes) in the domain are deleted as well. The DeleteDomain operation might take 10 or more seconds to complete.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain to delete.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "getAttributes",
+      "description": "Returns all of the attributes associated with the item. Optionally, the attributes returned can be limited to one or more specified attribute name parameters.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "itemName",
+          "type": "String",
+          "info": "The name of the item.",
+          "required": true
+        },
+        {
+          "name": "attributeName",
+          "type": "String",
+          "info": "The name of the attribute.",
+          "required": false
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain in which to perform the operation.",
+          "required": true
+        },
+        {
+          "name": "consistentRead",
+          "type": "String",
+          "info": "When set to true, ensures that the most recent data is returned. Default: false.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "putAttributes",
+      "description": "This endpoint allows to creates or replaces attributes in an item.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "itemName",
+          "type": "String",
+          "info": "The name of the item.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain in which to perform the operation.",
+          "required": true
+        },
+        {
+          "name": "attributes",
+          "type": "List",
+          "info": "Array of objects. Attributes are uniquely identified in an item by their name\/value combination. Attribute.X.Name and Attribute.X.Value are reuired. See README for more details.",
+          "required": true,
+          "structure": {
+            "name": "attribute",
+            "type": "JSON",
+            "info": "Single attribute"
+          }
+        },
+        {
+          "name": "expectedName",
+          "type": "String",
+          "info": "Name of the attribute to check. Must be used with the expected value or expected exists parameter.",
+          "required": false
+        },
+        {
+          "name": "expectedValue",
+          "type": "String",
+          "info": "Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.",
+          "required": false
+        },
+        {
+          "name": "expectedExists",
+          "type": "String",
+          "info": "Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "deleteAttributes",
+      "description": "This endpoint allows to deletes one or more attributes associated with the item. If all attributes of an item are deleted, the item is deleted.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "itemName",
+          "type": "String",
+          "info": "The name of the item.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain in which to perform the operation.",
+          "required": true
+        },
+        {
+          "name": "attributes",
+          "type": "List",
+          "info": "Array of objects. Attributes are uniquely identified in an item by their name\/value combination. If you specify DeleteAttributes without attribute names or values, all the attributes for the item are deleted. See README for more details.",
+          "required": true,
+          "structure": {
+            "name": "attribute",
+            "type": "JSON",
+            "info": "Single attribute"
+          }
+        },
+        {
+          "name": "expectedName",
+          "type": "String",
+          "info": "Name of the attribute to check. Must be used with the expected value or expected exists parameter.",
+          "required": false
+        },
+        {
+          "name": "expectedValue",
+          "type": "String",
+          "info": "Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.",
+          "required": false
+        },
+        {
+          "name": "expectedExists",
+          "type": "String",
+          "info": "Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "batchPutAttributes",
+      "description": "With the BatchPutAttributes operation, you can perform multiple PutAttribute operations in a single call. This helps you yield savings in round trips and latencies, and enables Amazon SimpleDB to optimize requests, which generally yields better throughput.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain in which to perform the operation.",
+          "required": true
+        },
+        {
+          "name": "items",
+          "type": "List",
+          "info": "Array of objects. Items of attributes are uniquely identified in an item by their name\/value combination. See README for more details.",
+          "required": true,
+          "structure": {
+            "name": "item",
+            "type": "JSON",
+            "info": "Single item"
+          }
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "batchDeleteAttributes",
+      "description": "Performs multiple DeleteAttributes operations in a single call, which reduces round trips and latencies. This enables Amazon SimpleDB to optimize requests, which generally yields better throughput.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain in which to perform the operation.",
+          "required": true
+        },
+        {
+          "name": "items",
+          "type": "List",
+          "info": "Array of objects. Items to be deleted. See README for more details.",
+          "required": true,
+          "structure": {
+            "name": "item",
+            "type": "JSON",
+            "info": "Single item"
+          }
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "domainMetadata",
+      "description": "Returns information about the domain, including when the domain was created, the number of items and attributes, and the size of attribute names and values.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "domainName",
+          "type": "String",
+          "info": "The name of the domain for which to display metadata.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    },
+    {
+      "name": "makeSelectExpression",
+      "description": "The Select operation returns a set of Attributes for ItemNames that match the select expression. Select is similar to the standard SQL SELECT statement.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "API key obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "apiSecret",
+          "type": "credentials",
+          "info": "API secret obtained from Amazon.",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "String",
+          "info": "The region for endpoint. See README for all possible values.",
+          "required": true
+        },
+        {
+          "name": "selectExpression",
+          "type": "String",
+          "info": "The expression used to query the domain. For example: select Color from `MyDomain` where Color like '%Blue%'.",
+          "required": true
+        },
+        {
+          "name": "consistentRead",
+          "type": "String",
+          "info": "true or false. When set to true, ensures that the most recent data is returned.",
+          "required": false
+        },
+        {
+          "name": "nextToken",
+          "type": "String",
+          "info": "String that tells Amazon SimpleDB where to start the next list of ItemNames.",
+          "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "error",
+          "info": "Error"
+        },
+        {
+          "name": "success",
+          "info": "Success"
+        }
+      ]
+    }
+  ]
 }

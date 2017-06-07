@@ -19,6 +19,16 @@ Store & query data items via AWS web services requests.
 3. Create new user and assign to existing group
 4. After creating user you will see credentials
 
+## Custom datatypes: 
+ |Datatype|Description|Example
+ |--------|-----------|----------
+ |Datepicker|String which includes date and time|```2016-05-28 00:00:00```
+ |Map|String which includes latitude and longitude coma separated|```50.37, 26.56```
+ |List|Simple array|```["123", "sample"]``` 
+ |Select|String with predefined values|```sample```
+ |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+ 
+
 #### region possible values
 
 | Region         | Region name
@@ -92,7 +102,7 @@ This endpoint allows to creates or replaces attributes in an item.
 | region        | String     | Required: The region for endpoint. See README for all possible values.
 | itemName      | String     | Required: The name of the item.
 | domainName    | String     | Required: The name of the domain in which to perform the operation.
-| attributes    | JSON       | Required: Array of objects. Attributes are uniquely identified in an item by their name/value combination. Attribute.X.Name and Attribute.X.Value are reuired. See README for more details.
+| attributes    | List       | Required: Array of objects. Attributes are uniquely identified in an item by their name/value combination. Attribute.X.Name and Attribute.X.Value are reuired. See README for more details.
 | expectedName  | String     | Optional: Name of the attribute to check. Must be used with the expected value or expected exists parameter.
 | expectedValue | String     | Optional: Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.
 | expectedExists| String     | Optional: Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.
@@ -121,7 +131,7 @@ This endpoint allows to deletes one or more attributes associated with the item.
 | region        | String     | Required: The region for endpoint. See README for all possible values.
 | itemName      | String     | Required: The name of the item.
 | domainName    | String     | Required: The name of the domain in which to perform the operation.
-| attributes    | JSON       | Required: Array of objects. Attributes are uniquely identified in an item by their name/value combination. If you specify DeleteAttributes without attribute names or values, all the attributes for the item are deleted. See README for more details.
+| attributes    | List       | Required: Array of objects. Attributes are uniquely identified in an item by their name/value combination. If you specify DeleteAttributes without attribute names or values, all the attributes for the item are deleted. See README for more details.
 | expectedName  | String     | Optional: Name of the attribute to check. Must be used with the expected value or expected exists parameter.
 | expectedValue | String     | Optional: Value of the attribute to check. Must be used with the expected name parameter. Can be used with the expected exists parameter if that parameter is set to true.
 | expectedExists| String     | Optional: Flag to test the existence of an attribute while performing conditional updates. Must be used with the expected name parameter. When set to true, this must be used with the expected value parameter. When set to false, this cannot be used with the expected value parameter.
@@ -149,7 +159,7 @@ With the BatchPutAttributes operation, you can perform multiple PutAttribute ope
 | apiSecret | credentials| Required: API secret obtained from Amazon.
 | region    | String     | Required: The region for endpoint. See README for all possible values.
 | domainName| String     | Required: The name of the domain in which to perform the operation.
-| items     | JSON       | Required: Array of objects. Items of attributes are uniquely identified in an item by their name/value combination. See README for more details.
+| items     | List       | Required: Array of objects. Items of attributes are uniquely identified in an item by their name/value combination. See README for more details.
 
 #### items format
 ```json
@@ -196,7 +206,7 @@ Performs multiple DeleteAttributes operations in a single call, which reduces ro
 | apiSecret | credentials| Required: API secret obtained from Amazon.
 | region    | String     | Required: The region for endpoint. See README for all possible values.
 | domainName| String     | Required: The name of the domain in which to perform the operation.
-| items     | JSON       | Required: Array of objects. Items to be deleted. See README for more details.
+| items     | List       | Required: Array of objects. Items to be deleted. See README for more details.
 
 #### items format
 ```json
